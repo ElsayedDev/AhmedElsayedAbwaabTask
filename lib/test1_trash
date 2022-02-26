@@ -1,0 +1,186 @@
+// import 'package:flutter/material.dart';
+// import 'dart:math' as math;
+
+// class Test1Page extends StatelessWidget {
+//   const Test1Page({Key? key}) : super(key: key);
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final _size = MediaQuery.of(context).size;
+
+//     final _height = _size.height * 0.6 * 1.2;
+
+//     final _width = _size.width * 0.8 * 1.2;
+
+//     final _sizePaint = Size(_height / 4.5, _height / 4.5);
+
+//     return Center(
+//       child: Container(
+//         color: Colors.amber.shade100,
+//         height: _height,
+//         width: _width,
+//         child: Stack(
+//           children: [
+//             Padding(
+//               padding:
+//                   EdgeInsets.only(left: _width * 0.16, top: _height * 0.11 * 0),
+//               child: Container(
+//                 height: _height * 0.1,
+//                 width: _width * 0.5,
+//                 color: Colors.red,
+//               ),
+//             ),
+//             CustomPaint(painter: MyPainterLeft(), size: _sizePaint),
+
+//             ///
+//             Padding(
+//               padding: EdgeInsets.only(
+//                 left: _width * 0.16 * 2,
+//                 top: _height * 0.11,
+//               ),
+//               child: Container(
+//                 height: _height * 0.1,
+//                 width: _width * 0.5,
+//                 color: Colors.red,
+//               ),
+//             ),
+//             CustomPaint(painter: RightMyPainter(), size: _sizePaint),
+
+//             ///
+//             ///
+//             Padding(
+//               padding:
+//                   EdgeInsets.only(left: _width * 0.16, top: _height * 0.11 * 2),
+//               child: Container(
+//                 height: _height * 0.1,
+//                 width: _width * 0.5,
+//                 color: Colors.red,
+//               ),
+//             ),
+//             CustomPaint(
+//               painter: MyPainterLeft(increase: _height * 0.11 * 2),
+//               size: _sizePaint,
+//             ),
+
+//             ///
+//             Padding(
+//               padding: EdgeInsets.only(
+//                 left: _width * 0.16 * 2,
+//                 top: _height * 0.11 * 3,
+//               ),
+//               child: Container(
+//                 height: _height * 0.1,
+//                 width: _width * 0.5,
+//                 color: Colors.red,
+//               ),
+//             ),
+//             CustomPaint(
+//                 painter: RightMyPainter(increase: _height * 0.11 * 2),
+//                 size: _sizePaint),
+
+//             ///
+//             Padding(
+//               padding:
+//                   EdgeInsets.only(left: _width * 0.16, top: _height * 0.11 * 4),
+//               /* length - 1 */
+//               child: Container(
+//                 height: _height * 0.1,
+//                 width: _width * 0.5,
+//                 color: Colors.red,
+//               ),
+//             ),
+//             CustomPaint(
+//                 painter: MyPainterLeft(increase: _height * 0.11 * 4),
+//                 /* length - 1 */
+//                 size: _sizePaint),
+
+//             ///
+//             ///
+//             Padding(
+//               padding: EdgeInsets.only(
+//                 left: _width * 0.16 * 2,
+//                 top: _height * 0.11 * 5, /* length - 1 */
+//               ),
+//               child: Container(
+//                 height: _height * 0.1,
+//                 width: _width * 0.5,
+//                 color: Colors.red,
+//               ),
+//             ),
+//             CustomPaint(
+//                 painter: RightMyPainter(increase: _height * 0.11 * 4),
+//                 /* length - 2 */
+//                 size: _sizePaint),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
+// // This is the Painter class
+// class MyPainterLeft extends CustomPainter {
+//   final double increase;
+
+//   MyPainterLeft({this.increase = 0});
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     final _heigh = size.height / 2;
+//     final _width = size.width / 2;
+//     debugPrint("${size.height}..  ${size.width}  ");
+//     Paint paint = Paint()
+//       ..color = Colors.blue
+//       ..style = PaintingStyle.stroke
+//       ..strokeWidth = 2;
+//     canvas.drawArc(
+//       Rect.fromCenter(
+//         center: Offset(_heigh, _width + increase),
+//         height: _heigh,
+//         width: _width,
+//       ),
+//       math.pi * 0.5,
+//       math.pi,
+//       false,
+//       paint,
+//     );
+//     // canvas.drawLine(Offset(size.height / 2, 0), const Offset(100, 0), paint);
+//     canvas.drawLine(Offset(_heigh, _width * 1.5 + increase),
+//         Offset(_width * 2, _width * 1.5 + increase), paint);
+//   }
+
+//   @override
+//   bool shouldRepaint(CustomPainter oldDelegate) => false;
+// }
+
+// // This is the Painter class
+// class RightMyPainter extends CustomPainter {
+//   final double increase;
+//   RightMyPainter({this.increase = 0});
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     final _heigh = size.height / 2;
+//     final _width = size.width / 2;
+
+//     Paint paint = Paint()
+//       ..color = Colors.purple
+//       ..style = PaintingStyle.stroke
+//       ..strokeWidth = 2;
+//     canvas.drawArc(
+//       Rect.fromCenter(
+//         center: Offset(_heigh * 5, _heigh * 2 + increase),
+//         height: _heigh,
+//         width: _width,
+//       ),
+//       math.pi * 1.5,
+//       math.pi,
+//       false,
+//       paint,
+//     );
+//     // canvas.drawLine(Offset(size.height / 2, 0), const Offset(100, 0), paint);
+//     canvas.drawLine(Offset(_heigh * 5, _width * 2.5 + increase),
+//         Offset(_width * 4, _width * 2.5 + increase), paint);
+//   }
+
+//   @override
+//   bool shouldRepaint(CustomPainter oldDelegate) => false;
+// }
