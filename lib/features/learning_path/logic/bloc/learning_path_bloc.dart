@@ -8,14 +8,16 @@ part 'learning_path_event.dart';
 part 'learning_path_state.dart';
 
 class LearningPathBloc extends Bloc<LearningPathEvent, LearningPathState> {
-  LearningPathBloc() : super(LearningPathState.initial()) {
+  final LearningPathRepository learningPathRepository;
+  LearningPathBloc(this.learningPathRepository)
+      : super(LearningPathState.initial()) {
     on<LearningPathFetched>(_onLearningPathFetched);
     on<LearningPathUserSelected>(_onLearningPathUserSelected);
   }
   Future<void> _onLearningPathFetched(
       LearningPathFetched event, Emitter<LearningPathState> emit) async {
     final LearningPathModel? _learningPathModel =
-        await LearningPathRepository.getUsers();
+        await learningPathRepository.getModel();
 
     debugPrint(_learningPathModel.toString());
     if (_learningPathModel == null) {

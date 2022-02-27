@@ -8,6 +8,7 @@ import 'waiting_screen.dart';
 
 class LearningPathScreen extends StatelessWidget {
   const LearningPathScreen({Key? key}) : super(key: key);
+  static const String routeName = '/learning_path';
 
   @override
   Widget build(BuildContext context) {
